@@ -21,6 +21,9 @@ Page({
     })
     this.getData();
   },
+  /**
+   * 根据书的编号获取列表
+   */
   getData(){
     this.setData({
       isLoading: true

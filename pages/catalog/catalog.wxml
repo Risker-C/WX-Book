@@ -1,6 +1,7 @@
 <!--pages/catalog/catalog.wxml-->
 <image src='/static/img/loading02.svg' class="loading" wx:if="{{isLoading}}"></image>
 <view wx:else>
+  <!-- 显示书籍对应目录列表 -->
   <view class='container catalog'>
     <view wx:for="{{catalogData}}" wx:key="{{index}}" class='catalog-item'>
       <navigator url="{{'/pages/book/book?id=' + item._id + '&bookId=' + item.bookId}}" class='link'>

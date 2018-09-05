@@ -1,12 +1,14 @@
 /**index.wxss**/
+/* 轮播图样式 */
 .index .slide-image{
   width: 710rpx;
   height: 350rpx;
 }
-
+/* 每一类书籍样式 */
 .content-item{
   margin-top: 40rpx;
 }
+/* 每本书籍样式---Start */
 .content-item .title{
   font-size: 16px;
   padding-left: 20rpx;
@@ -38,7 +40,7 @@
   font-size: 16px;
   color: #333;
 }
-
+/* 每本书籍样式---End */
 
 .box-r .book-desc{
   display: -webkit-box;

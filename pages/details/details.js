@@ -21,6 +21,9 @@ Page({
     });
     this.getData();
   },
+  /**
+   * 根据书的编号获取书的详细信息
+   */
   getData(){
     this.setData({
       isLoading: true
@@ -38,6 +41,9 @@ Page({
       })
     })
   },
+  /**
+   * 点击阅读，跳转到列表详情页面，并传递书籍编号
+   */
   jumpCatalog(){
     wx.navigateTo({
       url: `/pages/catalog/catalog?id=${this.data.bookId}`,

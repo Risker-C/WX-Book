@@ -1,5 +1,5 @@
 /* pages/catalog/catalog.wxss */
-
+/* 列表样式--Start */
 .catalog{
   font-size: 14px;
   color: #333;
@@ -8,3 +8,4 @@
   line-height: 2;
   border-bottom: 2rpx solid #333;
 }
+/* 列表样式--End */

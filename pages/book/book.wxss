@@ -3,7 +3,11 @@
 @import '/towxml/style/theme/light.wxss';
 @import '/towxml/style/theme/dark.wxss';
 @import '/static/iconfont/iconfont.wxss';
-
+/* 整体样式 */
+.book{
+  padding: 0 30rpx;
+}
+/* 底部导航菜单样式--Start */
 .book .menu{
   position: fixed;
   bottom: 0;
@@ -24,10 +28,12 @@
   font-size: 20px;
 }
 
-.mene .iconfont:active{
+.menu .iconfont:active{
   background: #f1f1f1;
 }
+/* 底部导航菜单样式--End */
 
+/* 左侧导航菜单样式--Start */
 .catalog-menu{
   position: fixed;
   left: 0;
@@ -38,7 +44,18 @@
   background: #fff;
   border: 1px solid #f1f1f1;
   z-index: 996;
+  transform: translate3d(-100%,0,0);
+  transition:transform .3s ease;
 }
+
+.active{
+  transform: translate3d(0,0,0);
+}
+
+.selected{
+  background: #f1f1f1
+}
+
 .catalog-menu .catalog-item{
   font-size: 14px;
   color: #333;
@@ -50,7 +67,9 @@
 .catalog-item:active{
   background: #f1f1f1;
 }
+/* 左侧导航菜单样式--End */
 
+/* 底部虚化返回样式--Start */
 .mask{
   position: fixed;
   top: 0;
@@ -60,6 +79,6 @@
   z-index: 888;
   background: rgba(0, 0, 0, .2)
 }
-
+/* 底部虚化返回样式--End */
 
 

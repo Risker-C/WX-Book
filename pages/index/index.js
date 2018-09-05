@@ -13,6 +13,9 @@ Page({
     duration: 1000,
     isLoading:false
   },
+  /**
+   * 生命周期函数--监听页面加载
+   */
   onLoad () {
     this.getData();
     this.getContent();
@@ -46,8 +49,8 @@ Page({
   },
   //实现点击跳转
   jumpbook(event){
+    // console.log(event)
     const id = event.currentTarget.dataset.id;
-    // console.log(event.currentTarget.dataset.id)
     wx.navigateTo({
       url: `/pages/details/details?id=${id}`,
     })

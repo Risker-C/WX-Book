@@ -1,7 +1,10 @@
 <!--pages/details/details.wxml-->
 <view class='details'>
+  <!-- 当进入页面时，显示加载图片 -->
   <image src='/static/img/loading.svg' class="loading" wx:if="{{isLoading}}"></image>
+  <!-- 页面信息加载完成，显示信息 -->
   <view wx:else>
+    <!-- 第一部分：详细信息 -->
     <view class='book-details'>
       <view class='book-t'>
         <image src='{{bookData.data.img}}' class='img'></image>
@@ -17,10 +20,12 @@
         <button class='btn'>分享好友</button>
       </view>
     </view>
+    <!-- 第二部分：简介部分 -->
     <view class='book-desc'>
       <view class='title'>简介</view>
       <view class='desc-main'>{{bookData.data.desc}}</view>
     </view>
+    <!-- 第三部分：目录部分 -->
     <view class='book-catalog'>
       <view class='catelog-l'>
         <view class='show-catalog'>查看目录</view>
@@ -28,6 +33,7 @@
       </view>
       <view class='catalog-r update-time'>更新于两天前></view>
     </view>
+    <!-- 第四部分：阅读按钮 -->
     <view class='read-btn-wrap'>
       <button class='b-btn' bindtap='jumpCatalog'>阅读该书籍</button>
     </view>

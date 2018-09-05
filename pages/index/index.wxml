@@ -2,6 +2,7 @@
 <view class="container index">
   <image src='/static/img/my-loading.svg' class="loading" wx:if="{{isLoading}}"></image>
   <view wx:else>
+    <!-- 第一部分：轮播图模块 -->
     <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
       <block wx:for="{{swiperData}}" wx:key="{{index}}">
         <swiper-item bindtap="jumpbook" data-id="{{item.book._id}}">
@@ -9,20 +10,30 @@
         </swiper-item>
       </block>
     </swiper>
+    <!-- 第二部分：书籍列表部分 -->
     <view class="main-content">
-      <view class="content-item" wx:for="{{maincontent}}" wx:key="index">
+      <!-- 加载不同类别书籍 -->
+      <view class="content-item" wx:for="{{maincontent}}" wx:key="index"  >
+        <!-- 加载书籍类别表头 -->
         <view class="title">
           {{item.title}}
         </view>
-        <view class="content" wx:for="{{item.books}}" wx:key="index">
+        <!-- 加载书籍详细信息 -->
+        <view class="content" wx:for="{{item.books}}" wx:key="index" bindtap="jumpbook" data-id="{{item._id}}">
+          <!-- 详细信息分为左右两侧显示 -->
+          <!-- 左侧显示图片 -->
           <view class='box-l'>
             <image src='{{item.img}}' class='img'></image>
           </view>
+          <!-- 右侧显示信息 -->
           <view class='box-r'>
+            <!-- 信息分为上下两块 -->
+            <!-- 上面是书名和简介 -->
             <view>
               <view class='book-title'>{{item.title}}</view>
               <view class='book-desc'>{{item.desc}}</view>
             </view>
+            <!-- 下面是作者，发布时间... -->
             <view class='author'>
               <text class='author-l'>{{item.author}}</text>
               <view class='author-r'>

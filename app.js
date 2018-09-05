@@ -1,5 +1,6 @@
 //app.js
-const Towxml = require('/towxml/main');
+//使用towxml解析md
+// const Towxml = require('/towxml/main');
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -34,7 +35,8 @@ App({
       }
     })
   },
-  towxml:new Towxml(),
+  //使用towxml解析md
+  // towxml:new Towxml(),
   globalData: {
     userInfo: null
   }
