@@ -3,12 +3,40 @@
     "pages/index/index",
     "pages/details/details",
     "pages/book/book",
-    "pages/catalog/catalog"
+    "pages/catalog/catalog",
+    "pages/user/user",
+    "pages/history/history"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "云书",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true,
+    "onReachBottomDistance": 50
+  },
+  "tabBar": {
+    "position": "bottom",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "书店",
+        "iconPath": "/static/img/history_3.png",
+        "selectedIconPath": "/static/img/history_4.png"
+      },
+      {
+        "pagePath": "pages/history/history",
+        "text": "书架",
+        "iconPath": "/static/img/history_1.png",
+        "selectedIconPath": "/static/img/history_2.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "书虫",
+        "iconPath": "/static/img/me_1.png",
+        "selectedIconPath": "/static/img/me_2.png"
+      }
+    ]
   }
 }

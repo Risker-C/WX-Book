@@ -17,6 +17,9 @@
         <!-- 加载书籍类别表头 -->
         <view class="title">
           {{item.title}}
+          <view class='moreBook' bindtap="getListBook" data-id="{{item._id}}">
+            <text>更多...</text>
+          </view>
         </view>
         <!-- 加载书籍详细信息 -->
         <view class="content" wx:for="{{item.books}}" wx:key="index" bindtap="jumpbook" data-id="{{item._id}}">
@@ -37,13 +40,24 @@
             <view class='author'>
               <text class='author-l'>{{item.author}}</text>
               <view class='author-r'>
-                <text class='update-time'>两天前</text>
-                <text class='category'>后端开发</text>
-                <text class='manyi '>{{item.looknums}}</text>
+                <text class='update-time'>两天前   </text>
+                <text class='category'>后端开发   </text>
+                <text class='manyi '>{{item.looknums}}人浏览</text>
               </view>
             </view>
           </view>
         </view>
+      </view>
+    </view>
+    <!-- 第三部分：Loading加载 -->
+    <view wx:if="{{loadDone}}">
+      <view class='loadingMore' hidden="{{isAll}}">
+        <image class='loadingMoreImg' src='/static/img/loadingMore.svg'></image>
+        <text class='loadingMoreText'>正在加载...</text>
+      </view>
+      <view class='noMore' hidden='{{!isAll}}'>
+        <text class='noMoreText'>我也是有底线的</text>
+        <view class='noMoreLine'></view>
       </view>
     </view>
   </view>

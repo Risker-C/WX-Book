@@ -8,15 +8,22 @@
 .content-item{
   margin-top: 40rpx;
 }
+
+
 /* 每本书籍样式---Start */
 .content-item .title{
+  position: relative;
   font-size: 16px;
   padding-left: 20rpx;
   border-left: 2px solid #000;
   line-height: 24rpx;
   height: 24rpx;
 }
-
+.content-item .moreBook{
+  position: absolute;
+  right: 0;
+  top: 0;
+}
 .content-item .content{
   margin-top: 40rpx;
   display: flex;
@@ -40,7 +47,6 @@
   font-size: 16px;
   color: #333;
 }
-/* 每本书籍样式---End */
 
 .box-r .book-desc{
   display: -webkit-box;
@@ -57,3 +63,52 @@
   justify-content: space-between;
   font-size: 12px;
 }
+/* 每本书籍样式---End */
+
+/* 下拉加载--Start */
+.loadingMore{
+  margin-top: 40rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  color: #555
+}
+
+.loadingMore .loadingMoreImg{
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.loadingMore loadingMoreText{
+  line-height: 50rpx;
+  height: 50rpx;
+  padding-left: 20rpx;
+}
+
+.noMore{
+  position: relative;
+  line-height: 160rpx;
+  height: 160rpx;
+  text-align: center;
+  background: #f1f1f1;
+  font-size: 14px;
+  color: #9e9e9e
+}
+.noMore .noMoreText{
+  position: relative;
+  z-index: 998;
+  padding: 0 20rpx;
+  background: #f1f1f1;
+}
+.noMore .noMoreLine{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 0;
+  transform: translate(-50%,-50%);
+  width: 500rpx;
+  height: 1rpx;
+  background-color: #ccc;
+}
+/* 下拉加载--End */

@@ -34,7 +34,7 @@ Page({
         bookData:res,
         isLoading: false
       })
-      // console.log(this.data.bookData)
+      console.log(this.data.bookData.isCollect)
     }).catch(err => {
       this.setData({
         isLoading: false
@@ -47,6 +47,24 @@ Page({
   jumpCatalog(){
     wx.navigateTo({
       url: `/pages/catalog/catalog?id=${this.data.bookId}`,
+    })
+  },
+  collect(){
+    fetch.post('/collection',{
+      bookId:this.data.bookId
+    }).then((res)=>{
+      if(res.code == 200){
+        wx.showToast({
+          title: '收藏成功',
+          icon: 'success',
+          duration: 1000
+        })
+      }
+      let bookData = {...this.data.bookData}
+      bookData.isCollect = 1;
+      this.setData({
+        bookData: bookData
+      })
     })
   },
   /**
@@ -95,6 +113,10 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+    return{
+      title:this.data.bookData.data.title,
+      path: `/pages/details/details?id=${this.data.bookId}`,
+      imageUrl:this.data.bookData.data.img
+    }
   }
 })
