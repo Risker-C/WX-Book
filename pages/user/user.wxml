@@ -1,2 +1,31 @@
 <!--pages/user/user.wxml-->
-<text>pages/user/user.wxml</text>
+<view>
+  <view class='top'>
+    <view class='userInformation'>
+      <image class='userImg' src='{{avatarUrl}}'></image>
+      <view class='userSomething'>
+        <view class='userName'>
+          <text >{{nickName}}</text>
+        </view>
+        <view class='usertalk'>
+          <text>他很懒，什么也没有留下....</text>
+        </view>
+      </view>
+    </view>
+    <view class='topBtn'>
+      <view class='leftBtn' bindtap='jumpPage'>
+        <view class='num'>{{collectNum}}</view>
+        <view class='btn'>收藏</view>
+      </view>
+      <view class='rightBtn' bindtap=''>
+        <view class='num'>5</view>
+        <view class='btn'>关注</view>
+      </view>
+    </view>
+  </view>
+  <view class='bottom'>
+  <view  wx:if="{{!isLogin}}" >
+    <button open-type="getUserInfo" bindgetuserinfo="login">登陆</button>
+  </view>
+  </view>
+</view>

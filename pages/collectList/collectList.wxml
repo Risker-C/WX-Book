@@ -1,0 +1,9 @@
+<!--pages/collectList/collectList.wxml-->
+<checkbox-group class='main' bindchange="checkboxChange">
+  <view class='book' wx:for="{{collectList}}" bindlongpress="delect" data-id="{{item.book._id}}" data-name="{{item.book.title}}" wx:key="{{index}}">
+      <image class='bookImg' src="{{item.book.img}}"></image>
+      <text class='bookName'>{{item.book.title}}</text>
+      <checkbox bindchange='checkboxChange'  value='{{item.book._id}}' hidden='{{!isDelectDll}}'></checkbox>
+  </view>
+  <button class='bottom' bindtap='clearAll'>{{isDelectDll ? "批量删除":"批量处理"}}</button>
+</checkbox-group>

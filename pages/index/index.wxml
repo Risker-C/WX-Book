@@ -22,27 +22,27 @@
           </view>
         </view>
         <!-- 加载书籍详细信息 -->
-        <view class="content" wx:for="{{item.books}}" wx:key="index" bindtap="jumpbook" data-id="{{item._id}}">
+        <view class="content" wx:for="{{item.books}}" wx:key="index" bindtap="jumpbook" data-id="{{itemName._id}}" wx:for-item="itemName">
           <!-- 详细信息分为左右两侧显示 -->
           <!-- 左侧显示图片 -->
           <view class='box-l'>
-            <image src='{{item.img}}' class='img'></image>
+            <image src='{{itemName.img}}' class='img'></image>
           </view>
           <!-- 右侧显示信息 -->
           <view class='box-r'>
             <!-- 信息分为上下两块 -->
             <!-- 上面是书名和简介 -->
             <view>
-              <view class='book-title'>{{item.title}}</view>
-              <view class='book-desc'>{{item.desc}}</view>
+              <view class='book-title'>{{itemName.title}}</view>
+              <view class='book-desc'>{{itemName.desc}}</view>
             </view>
             <!-- 下面是作者，发布时间... -->
             <view class='author'>
-              <text class='author-l'>{{item.author}}</text>
+              <text class='author-l'>{{itemName.author}}</text>
               <view class='author-r'>
-                <text class='update-time'>两天前   </text>
-                <text class='category'>后端开发   </text>
-                <text class='manyi '>{{item.looknums}}人浏览</text>
+                <text class='update-time'>{{itemName.updateTime}}前更新 </text>
+                <text class='category'>{{item.title}}</text>
+                <text class='manyi '>{{itemName.looknums}}人浏览</text>
               </view>
             </view>
           </view>
@@ -50,15 +50,6 @@
       </view>
     </view>
     <!-- 第三部分：Loading加载 -->
-    <view wx:if="{{loadDone}}">
-      <view class='loadingMore' hidden="{{isAll}}">
-        <image class='loadingMoreImg' src='/static/img/loadingMore.svg'></image>
-        <text class='loadingMoreText'>正在加载...</text>
-      </view>
-      <view class='noMore' hidden='{{!isAll}}'>
-        <text class='noMoreText'>我也是有底线的</text>
-        <view class='noMoreLine'></view>
-      </view>
-    </view>
+    <loadingBottom has-more="{{isAll}}" wx:if="{{loadDone}}"></loadingBottom>
   </view>
 </view>

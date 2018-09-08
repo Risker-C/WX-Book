@@ -1,2 +1,44 @@
 <!--pages/history/history.wxml-->
-<text>pages/history/history.wxml</text>
+<view class='content-item' wx:if="{{isLogin}}">
+  <!-- 当进入页面时，显示加载图片 -->
+  <image src='/static/img/loading.svg' class="loading" wx:if="{{isLoading}}"></image>
+  <!-- 页面信息加载完成，显示信息 -->
+  <view wx:else>
+    <view class="main-content">
+      <!-- 加载书籍详细信息 -->
+      <view class="content" wx:for="{{bookList}}" wx:key="index" wx:for-item="itemName">
+        <!-- 详细信息分为左右两侧显示 -->
+        <!-- 左侧显示图片 -->
+        <view class='box-l'>
+          <image src='{{itemName.book.img}}' class='img'></image>
+        </view>
+        <!-- 右侧显示信息 -->
+        <view class='box-r'>
+          <!-- 信息分为上下两块 -->
+          <!-- 上面是书名和简介 -->
+          <view style='width:460rpx'>
+            <view class='book-title'>{{itemName.book.title}}</view>
+            <progress percent='{{itemName.Progreso}}' show-info active active-mode="backwards" style='with:200rpx'/>
+            <view class='book-b'>
+              <button class='btn'  bindtap="continueRead" data-bookId='{{itemName.title.bookId}} 'data-titleId='{{itemName.title._id}}'>继续阅读</button>
+              <button class='btn' bindtap='jumpbook' data-bookId='{{itemName.title.bookId}} '>查看文档</button>
+            </view>
+          </view>
+          <!-- 下面是作者，发布时间... -->
+          <view class='author'>
+            <text class='author-l'>{{itemName.book.author}}</text>
+            <view class='author-r'>
+              <text class='update-time'>{{itemName.book.updateTime}}前更新 </text>
+              <text class='category'>后端开发   </text>
+              <text class='manyi '>{{itemName.book.looknums}}人浏览</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <loadingBottom has-more="{{isAll}}"></loadingBottom>
+  </view>
+</view>
+<view hidden='{{isLogin}}'>
+  <button bindtap='jump' class='loginBtn'>未登录，请点击我前去登陆！</button>
+</view>

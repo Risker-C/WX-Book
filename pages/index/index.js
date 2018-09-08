@@ -1,6 +1,6 @@
 //index.js
 //获取应用实例
-import {fetch,login} from "../../utils/util.js"
+import { fetch, login, changeTime} from "../../utils/util.js"
 const app = getApp()
 
 Page({
@@ -48,6 +48,7 @@ Page({
     return new Promise((resole, reject) => {
       fetch.get('/category/books', { pn: this.data.pn }).then(res=>{
         resole();
+        res.data = this.change(res.data);
         let arr = [...this.data.maincontent,...res.data]
         this.setData({
           maincontent: arr
@@ -107,12 +108,18 @@ Page({
   getListBook(event){
     console.log(event.currentTarget.dataset.id);
     let listName = event.currentTarget.dataset.id;
-    fetch.get(`/category/${listName}/books`,{
-      
-    }).then((res)=>{
-      console.log(res)
-    }).catch((err)=>{
-      console.log(err);
+    wx.navigateTo({
+      url: `/pages/categoryList/categoryList?listName=${listName}`,
     })
+    
+  },
+  //更改时间格式
+  change(arr){
+    arr.forEach((item) => {
+      item.books.forEach((item)=>{
+        item.updateTime = changeTime(item.updateTime)
+      })
+    })
+    return arr;
   }
 })

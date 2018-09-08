@@ -1,1 +1,7 @@
-{}
+{
+  "usingComponents":{
+    "loadingBottom":"/Components/loadingBottom/loadingBottom"
+  },
+  "enablePullDownRefresh":true,
+  "onReachBottomDistance":100
+}

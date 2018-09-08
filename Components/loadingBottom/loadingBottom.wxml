@@ -1,0 +1,11 @@
+<!--loadingBotton/loadingBottom.wxml-->
+<view>
+  <view class='loadingMore' hidden="{{hasMore}}">
+    <image class='loadingMoreImg' src='/static/img/loadingMore.svg'></image>
+    <text class='loadingMoreText'>正在加载...</text>
+  </view>
+  <view class='noMore' hidden='{{!hasMore}}'>
+    <text class='noMoreText'>我也是有底线的</text>
+    <view class='noMoreLine'></view>
+  </view>
+</view>

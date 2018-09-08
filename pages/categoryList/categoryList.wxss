@@ -1,4 +1,8 @@
-/* pages/history/history.wxss */
+/* pages/categoryList/categoryList.wxss */
+/* 每一类书籍样式 */
+.content-item{
+}
+
 /* 每本书籍样式---Start */
 .content-item .title{
   position: relative;
@@ -63,27 +67,3 @@
   font-size: 12px;
 }
 /* 每本书籍样式---End */
-
-.book-b{
-  display: flex;
-  justify-content: space-between;
-  margin-top: 50rpx;
-  margin-right: 20rpx;
-}
-
-.book-b .btn{
-  color: #333;
-  margin: 0;
-  width: 200rpx;
-  font-size: 12px;
-  background: #e9e9e9;
-  border: 1px solid #e9e9e9;
-}
-
-.loginBtn{
-  width: 600rpx;
-  height: 100rpx;
-  line-height: 100rpx;
-  background: #be5622;
-  border-radius:30%; 
-}

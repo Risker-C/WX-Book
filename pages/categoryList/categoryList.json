@@ -3,6 +3,5 @@
     "loadingBottom": "/Components/loadingBottom/loadingBottom"
   },
   "enablePullDownRefresh": true,
-  "onReachBottomDistance": 100,
-  "navigationBarTitleText": "书架"
+  "onReachBottomDistance": 100
 }

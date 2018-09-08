@@ -8,7 +8,8 @@ Page({
   data: {
     bookId : "",
     bookData:{},
-    isLoading: false
+    isLoading: false,
+    isLogin:false
   },
 
   /**
@@ -17,7 +18,8 @@ Page({
   onLoad: function (options) {
     // console.log(options);
     this.setData({
-      bookId : options.id
+      bookId : options.id,
+      isLogin:wx.getStorageSync("isLogin")
     });
     this.getData();
   },
@@ -29,12 +31,10 @@ Page({
       isLoading: true
     })
     fetch.get(`/book/${this.data.bookId}`).then(res => {
-      // console.log(res)
       this.setData({
         bookData:res,
         isLoading: false
       })
-      console.log(this.data.bookData.isCollect)
     }).catch(err => {
       this.setData({
         isLoading: false
@@ -46,25 +46,49 @@ Page({
    */
   jumpCatalog(){
     wx.navigateTo({
-      url: `/pages/catalog/catalog?id=${this.data.bookId}`,
+      // url: `/pages/catalog/catalog?id=${this.data.bookId}`,
+      url:'/pages/user/user'
     })
   },
+  /**
+   * 收藏功能
+   */
   collect(){
-    fetch.post('/collection',{
-      bookId:this.data.bookId
-    }).then((res)=>{
-      if(res.code == 200){
-        wx.showToast({
-          title: '收藏成功',
-          icon: 'success',
-          duration: 1000
+    if(this.data.isLogin){
+      fetch.post('/collection', {
+        bookId: this.data.bookId
+      }).then((res) => {
+        if (res.code == 200) {
+          wx.showToast({
+            title: '收藏成功',
+            icon: 'success',
+            duration: 1000
+          })
+        }
+        let bookData = { ...this.data.bookData }
+        bookData.isCollect = 1;
+        this.setData({
+          bookData: bookData
         })
-      }
-      let bookData = {...this.data.bookData}
-      bookData.isCollect = 1;
-      this.setData({
-        bookData: bookData
       })
+    }else{
+      wx.showModal({
+        title: '未登录',
+        content: '请前去登陆，才可以收藏',
+        success: res =>{
+          if(res.confirm){
+            console.log("??")
+            this.jump()
+          }else if(res.cancel){
+
+          }
+        },
+      })
+    }
+  },
+  jump(){
+    wx.switchTab({
+      url: "/pages/user/user",
     })
   },
   /**

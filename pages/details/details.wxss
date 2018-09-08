@@ -37,11 +37,7 @@
   margin-top: 50rpx;
 }
 
-.book-b{
-  display: flex;
-  justify-content: space-between;
-  margin-top: 50rpx;
-}
+
 
 .book-b .btn{
   color: #333;
