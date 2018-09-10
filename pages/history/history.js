@@ -1,7 +1,6 @@
 // pages/history/history.js
 import { fetch, changeTime} from "../../utils/util.js"
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -16,31 +15,31 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // console.log(wx.getStorageSync("isLogin"))
     this.setData({
       isLogin:wx.getStorageSync("isLogin")
     })
     this.getData();
   },
   getData(){
-    return new Promise((resole,reject)=>{
-      fetch.get("/readList", {
-      }).then(res => {
-        res.data.forEach((item) => {
-          item.book.updateTime = changeTime(item.book.updateTime)
-          item.Progreso = Math.ceil(item.title.index / item.title.total * 100)
+    if(this.data.isLogin){
+      return new Promise((resole, reject) => {
+        fetch.get("/readList", {
+        }).then(res => {
+          res.data.forEach((item) => {
+            item.book.updateTime = changeTime(item.book.updateTime)
+            item.Progreso = Math.ceil(item.title.index / item.title.total * 100)
+          })
+          this.setData({
+            isLoading: false,
+            isAll: true,
+            bookList: res.data
+          })
+          resole();
+        }).catch(err => {
+          reject(err);
         })
-        this.setData({
-          isLoading: false,
-          isAll: true,
-          bookList: res.data
-        })
-        resole();
-      }).catch(err => {
-        reject(err);
       })
-    })
-    
+    }
   },
   //实现点击跳转
   jumpbook(event) {
@@ -61,13 +60,12 @@ Page({
       url: "/pages/user/user",
     })
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
+  login() {
+    console.log("??")
+    wx.navigateTo({
+      url: '/pages/LoginPage/LoginPage',
+    })
   },
-
   /**
    * 生命周期函数--监听页面显示
    */
@@ -77,26 +75,18 @@ Page({
     });
     this.getData();
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.getData();
+    wx.showNavigationBarLoading()
+    wx.setBackgroundTextStyle({
+      textStyle: 'dark', // 下拉背景字体、loading 图的样式为dark
+    })
+    this.getData().then(()=>{
+      wx.stopPullDownRefresh();
+      wx.hideNavigationBarLoading();
+    });
   },
   /**
    * 页面上拉触底事件的处理函数
@@ -108,12 +98,5 @@ Page({
     }).catch(err=>{
       console.log(err);
     });
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
   }
 })

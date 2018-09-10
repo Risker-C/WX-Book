@@ -1,0 +1,18 @@
+<!--pages/LoginPage/LoginPage.wxml-->
+<view wx:if="{{canIUse}}" class='main'>
+<view>
+<image src='/static/img/Logo.png'></image>
+</view>
+  <view class='mainText'>
+    允许微信授权后，可体验更多功能</view>
+  <view class="mainBtn">
+    <button open-type='getUserInfo' bindgetuserinfo="bindGetUserInfo" class="login btn" type='primary'>授权登录</button>
+    <button bindtap='navigateBack' class="backIndex btn">返回首页</button>
+  </view>
+</view>
+<view wx:else class='err'>
+  <view>
+    <image src='/static/img/err.png'></image>
+  </view>
+  <text>抱歉，请升级微信后重新登录</text>
+</view>

@@ -17,7 +17,7 @@
       </view>
       <view class='book-b'>
         <button class='btn' disabled="{{bookData.isCollect == 1 ? true : false}}" bindtap="collect">{{bookData.isCollect == 1 ?'已收藏' : '收藏'}}</button>
-        <button class='btn' open-type="share">分享好友</button>
+        <button class='btn' open-type="share" >分享好友</button>
       </view>
     </view>
     <!-- 第二部分：简介部分 -->

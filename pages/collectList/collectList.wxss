@@ -33,7 +33,7 @@ checkbox .wx-checkbox-input{
   border-radius: 50rpx;
   height: 100rpx;
   width: 100rpx;
-  background: red;
+  background: rgb(240, 137, 89);
   font-size: 40px;
   z-index: 998;
   position: absolute;
@@ -52,9 +52,15 @@ checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
   left: 50%;
   transform: translate(-50%);
   bottom: 0;
-  width: 200rpx;
+  width: 250rpx;
   height: 100rpx;
   text-align: 100rpx;
   border-radius: 40%;
-  background: yellow;
+  background: rgb(233, 180, 8);
+  color: rgb(23, 122, 23);
+}
+.noThing{
+  text-align: center;
+  font-size: 24px;
+  margin:200rpx auto; 
 }

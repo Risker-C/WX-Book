@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/LoginPage/LoginPage",
     "pages/collectList/collectList",
     "pages/user/user",
     "pages/details/details",
@@ -12,7 +13,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "云书",
+    "navigationBarTitleText": "书虫",
     "navigationBarTextStyle": "black",
     "enablePullDownRefresh": true,
     "onReachBottomDistance": 50
@@ -20,6 +21,8 @@
   "tabBar": {
     "position": "bottom",
     "backgroundColor": "#fff",
+    "color":"#3e3e3e",
+    "selectedColor":"#1296db",
     "list": [
       {
         "pagePath": "pages/index/index",

@@ -42,8 +42,6 @@ const fetch = {
 }
 
 const login = () => {
-  let isLogin = wx.getStorageSync("isLogin")
-  if(isLogin){
     wx.login({
       success(res) {
         fetch.post('/login', {
@@ -55,7 +53,6 @@ const login = () => {
         })
       }
     })
-  }
 }
 
 const changeTime = (time) =>{

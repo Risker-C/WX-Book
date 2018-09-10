@@ -17,15 +17,15 @@ Page({
    */
   onLoad: function (options) {
     this.getUser();
+    
   },
   getUser(){
     wx.getSetting({
       success: res => {
         if (res.authSetting['scope.userInfo']) {
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          wx.setStorageSync("isLogin", true)
           this.setData({
-            isLogin: true
+            isLogin: wx.getStorageSync("isLogin")
           }),
           login();
           wx.getUserInfo({
@@ -34,7 +34,9 @@ Page({
                 nickName: res.userInfo.nickName,
                 avatarUrl: res.userInfo.avatarUrl
               })
-              this.allCollections();
+              if (this.data.isLogin) {
+                this.allCollections();
+              }
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
               // 所以此处加入 callback 以防止这种情况
               if (this.userInfoReadyCallback) {
@@ -84,47 +86,24 @@ Page({
     })
   },
   login(){
-    this.getUser();
+    wx.navigateTo({
+      url: '/pages/LoginPage/LoginPage',
+    })
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getUser();
+    if(this.data.isLogin){
+      this.allCollections();
+    }else{
+      this.getUser();
+    }
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+  doNot(){
+    wx.showToast({
+      title: '功能尚未开发，敬请期待',
+      icon:'none'
+    })
   }
 })

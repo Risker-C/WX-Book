@@ -17,15 +17,20 @@
         <view class='num'>{{collectNum}}</view>
         <view class='btn'>收藏</view>
       </view>
-      <view class='rightBtn' bindtap=''>
+      <view class='rightBtn' bindtap='doNot'>
         <view class='num'>5</view>
         <view class='btn'>关注</view>
       </view>
     </view>
   </view>
   <view class='bottom'>
-  <view  wx:if="{{!isLogin}}" >
-    <button open-type="getUserInfo" bindgetuserinfo="login">登陆</button>
-  </view>
+    <view wx:if="{{!isLogin}}" >
+      <button bindtap="login" class='loginBtn'>登陆</button>
+      <image src='/static/img/loginBtnBgI.svg' class='loginBtnBgI'></image>
+    </view>
+    <view wx:else>
+      <view class='loginBtn'>已登陆</view>
+      <image src='/static/img/loginBtnBgI.svg' class='loginBtnBgI'></image>
+    </view>
   </view>
 </view>

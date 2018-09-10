@@ -20,26 +20,29 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad () {
-    login();
-    this.getAllData();
+    this.setData({
+      isLoading: true
+    })
+    this.getAllData().then(()=>{
+      this.setData({
+        isLoading: false
+      })
+    }).catch((err)=>{
+      this.setData({
+        isLoading: false
+      })
+    });
   },
   //获取轮播图数据
   getData(){
     return new Promise((resole,reject)=>{
-      this.setData({
-        isLoading: true
-      })
       fetch.get('/swiper').then(res => {
         resole();
         this.setData({
-          swiperData: res.data,
-          isLoading: false
+          swiperData: res.data
         })
       }).catch(err => {
         reject(err);
-        this.setData({
-          isLoading: false
-        })
       })
     })
   },
@@ -76,7 +79,6 @@ Page({
   },
   //实现点击跳转
   jumpbook(event){
-    // console.log(event)
     const id = event.currentTarget.dataset.id;
     wx.navigateTo({
       url: `/pages/details/details?id=${id}`,
@@ -84,12 +86,17 @@ Page({
   },
   //实现下拉刷新内容
   onPullDownRefresh(){
+    wx.showNavigationBarLoading();
+    wx.setBackgroundTextStyle({
+      textStyle: 'dark', // 下拉背景字体、loading 图的样式为dark
+    })
     this.setData({
       pn:1,
       maincontent: [],
       isAll:false
     })
     this.getAllData().then(()=>{
+      wx.hideNavigationBarLoading()
       wx.stopPullDownRefresh();
     }).catch(err=>{
       console.log(err);

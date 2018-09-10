@@ -3,7 +3,7 @@
 .top{
   width: 100%;
   height: 500rpx;
-  background: sandybrown;
+  background: #79caf5;
   position: relative;
 }
 .top .userInformation{
@@ -63,3 +63,33 @@
 
 /* 上面部分--End */
 
+/* 下面部分 */
+.bottom{
+  position: relative;
+  height: 600rpx;
+}
+.loginBtn{
+  width: 200rpx;
+  height: 200rpx;
+  z-index: 998;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  border-radius: 50%;
+  text-align: center;
+  line-height: 200rpx;
+  background: #0adfdfa2;
+  color: #1296db;
+  font-weight: bolder;
+  font-size: 24px;
+}
+.bottom .loginBtnBgI{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  border-radius: 50%;
+  width: 400rpx;
+  z-index: 100;
+}

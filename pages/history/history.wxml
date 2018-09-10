@@ -39,6 +39,9 @@
     <loadingBottom has-more="{{isAll}}"></loadingBottom>
   </view>
 </view>
-<view hidden='{{isLogin}}'>
-  <button bindtap='jump' class='loginBtn'>未登录，请点击我前去登陆！</button>
+<view class='bottom'>
+  <view  wx:if="{{!isLogin}}" >
+    <button bindtap="login" class='loginBtn'>登陆</button>
+    <image src='/static/img/loginBtnBgI.svg' class='loginBtnBgI'></image>
+  </view>
 </view>

@@ -1,17 +1,12 @@
 <!--pages/book/book.wxml-->
-<!-- <import src="/towxml/entry.wxml" /> -->
 <view class='book'>
   <image src='/static/img/loading02.svg' class="loading" wx:if="{{isLoading}}"></image>
   <view wx:else>
     <!-- 获取文章内容并显示 -->
     <view>
-      <!-- 使用towxml解析md -->
-      <!-- <template is="entry" data="{{...article}}" /> -->
       <wemark md="{{article}}" heighlight type="rich-text" style="{{'font-size:'+fontSize+'rpx'}}"></wemark>
     </view> 
-
     <!-- 左侧目录导航 -->
-
     <scroll-view scroll-y class="catalog-menu {{isShow ? 'active' : ''}}" >
       <view class="catalog-item {{index == titleIndex ? 'selected' : ''}}" wx:for="{{catalog}}" wx:key="{{index}}" bindtap='handleGet' data-id='{{item._id}}'>
         {{item.title}}

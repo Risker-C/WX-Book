@@ -8,7 +8,8 @@ Page({
   data: {
     collectList:[],
     isDelectDll:false,
-    delectList:[]
+    delectList:[],
+    show:true
   },
 
   /**
@@ -23,9 +24,14 @@ Page({
   findCollection() {
     fetch.get("/collection", {
     }).then(res => {
-      console.log(res);
+      if (res.data.length > 0){
+        this.data.show = false;
+      }else{
+        this.data.show = true;
+      }
       this.setData({
-        collectList:res.data
+        collectList:res.data,
+        show:this.data.show
       })
     }).catch(err => {
       console.log(err);
@@ -46,11 +52,15 @@ Page({
         if(res.confirm){
           fetch.delete(`/collection/${id}`, {
           }).then(res => {
-            console.log(res);
             wx.showToast({
               title: res.msg,
             })
             this.findCollection();
+            // if(this.data.collectList == 0){
+            //   this.setData({
+            //     show:true
+            //   })
+            // }
           }).catch(err => {
             console.log(err);
           })
@@ -64,12 +74,11 @@ Page({
    * 取消全部
    */
   clearAll(){
-    
     if (this.data.isDelectDll){
       if (this.data.delectList.length > 0){
         wx.showModal({
           title: '提示',
-          content: '确认要取消全部收藏？',
+          content: '确认要取消选中收藏？',
           success: res => {
             if (res.confirm) {
               fetch.post(`/collection/delete`, {
